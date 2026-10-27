@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <title>{% block title %}Booker{% endblock %}</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=DM+Sans:wght@400;500;600&display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    {# Keep library.css AFTER Tailwind so it wins any conflicts #}
+    <link rel="stylesheet" href="/assets/booker/css/library.css">
+    <style>
+:root{--bg:#f6f1dc;--surface:#fffdf4;--ink:#1d2b24;--muted:#6b705c;--line:#e4dcb8;--accent:#2f5d50;--on-accent:#fffdf4;
+--nav-background:var(--surface);--nav-border:var(--line);--nav-text:var(--muted);--nav-active:var(--accent);--nav-add-background:var(--accent);--nav-add-text:var(--on-accent)}
+body{background-color:var(--bg);color:var(--ink);font-family:"DM Sans",system-ui,sans-serif}
+.library-bottom-nav{left:50%;right:auto;bottom:14px;width:min(440px,calc(100% - 24px));min-height:68px;padding:8px;border:1px solid var(--nav-border);border-radius:24px;box-shadow:0 8px 28px rgb(60 50 10 / 14%);transform:translateX(-50%)}
+.library-nav-item.add-book .add-book-icon{width:52px;height:44px;border-radius:16px}
+</style>
+</head>
+<body>
+    <div class="app-layout">
+
+        <main class="library-main">
+            {% block content %}{% endblock %}
+        </main>
+
+        {# Floating bottom nav #}
+        {% set current_path = frappe.request.path.rstrip("/") %}
+
+        <nav class="library-bottom-nav" aria-label="Main navigation">
+
+            <a href="/library"
+               class="library-nav-item {% if current_path == '/library' %}active{% endif %}"
+               {% if current_path == '/library' %}aria-current="page"{% endif %}>
+                <i class="fa-solid fa-book-open" aria-hidden="true"></i>
+                <span>Library</span>
+            </a>
+
+            <a href="/library/discover"
+               class="library-nav-item {% if current_path == '/library/discover' %}active{% endif %}"
+               {% if current_path == '/library/discover' %}aria-current="page"{% endif %}>
+                <i class="fa-regular fa-compass" aria-hidden="true"></i>
+                <span>Discover</span>
+            </a>
+
+            <a href="/library/add-book"
+               class="library-nav-item add-book {% if current_path == '/library/add-book' %}active{% endif %}"
+               {% if current_path == '/library/add-book' %}aria-current="page"{% endif %}>
+                <span class="add-book-icon">
+                    <i class="fa-solid fa-plus" aria-hidden="true"></i>
+                </span>
+                <span>Add book</span>
+            </a>
+
+            <a href="/library/stats"
+               class="library-nav-item {% if current_path == '/library/stats' %}active{% endif %}"
+               {% if current_path == '/library/stats' %}aria-current="page"{% endif %}>
+                <i class="fa-solid fa-chart-simple" aria-hidden="true"></i>
+                <span>Stats</span>
+            </a>
+
+            <a href="/library/profile"
+               class="library-nav-item {% if current_path == '/library/profile' %}active{% endif %}"
+               {% if current_path == '/library/profile' %}aria-current="page"{% endif %}>
+                <i class="fa-regular fa-user" aria-hidden="true"></i>
+                <span>Profile</span>
+            </a>
+
+        </nav>
+    </div>
+</body>
+</html>

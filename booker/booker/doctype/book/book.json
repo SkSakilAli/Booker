@@ -1,0 +1,110 @@
+{
+ "actions": [],
+ "allow_copy": 1,
+ "autoname": "autoincrement",
+ "creation": "2026-10-27 15:59:54.153907",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "book_section",
+  "image",
+  "status",
+  "column_break_ysai",
+  "title",
+  "author",
+  "description",
+  "section_break_jszr",
+  "total_no_of_pages",
+  "column_break_ytew",
+  "pages_completed"
+ ],
+ "fields": [
+  {
+   "fieldname": "book_section",
+   "fieldtype": "Section Break",
+   "label": "Book"
+  },
+  {
+   "fieldname": "image",
+   "fieldtype": "Attach Image",
+   "label": "Image"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "Reading Status",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_ysai",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "title",
+   "fieldtype": "Data",
+   "label": "Title"
+  },
+  {
+   "fieldname": "author",
+   "fieldtype": "Data",
+   "label": "Author"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Data",
+   "label": "Description"
+  },
+  {
+   "fieldname": "section_break_jszr",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "total_no_of_pages",
+   "fieldtype": "Int",
+   "label": "Total No of Pages"
+  },
+  {
+   "fieldname": "column_break_ytew",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "pages_completed",
+   "fieldtype": "Int",
+   "label": "Pages Completed"
+  }
+ ],
+ "grid_page_length": 50,
+ "hide_toolbar": 1,
+ "image_field": "image",
+ "index_web_pages_for_search": 1,
+ "links": [],
+ "modified": "2026-10-27 16:24:25.839541",
+ "modified_by": "Administrator",
+ "module": "Booker",
+ "name": "Book",
+ "naming_rule": "Autoincrement",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "rows_threshold_for_grid_search": 20,
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "title"
+}

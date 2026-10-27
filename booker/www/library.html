@@ -1,0 +1,31 @@
+{% extends "templates/main_temp.html" %}
+{% block title %}Books{% endblock %}
+{% block content %}
+ <div class="flex justify-start items-end w-full">
+    <h2 class="font-['Fraunces',Georgia,serif] text-[2.2rem] sm:text-[2.6rem] font-semibold leading-none tracking-tight text-[var(--ink)] pt-2 pb-5">Library</h2>
+  </div>
+  <menu class="flex justify-between w-full items-center gap-1 p-1 m-0 overflow-x-auto whitespace-nowrap rounded-[14px] border border-[var(--line)] bg-[var(--surface)]">
+     {% for each_status in reading_status %}
+     <a  href="library?status={{each_status.name | urlencode}}"
+     	 class="flex-1 shrink-0 rounded-[10px] px-2 py-2.5 text-center text-sm font-medium transition-colors cursor-pointer {% if loop.first %}bg-[var(--accent)] text-[var(--on-accent)]{% else %}text-[var(--muted)] hover:text-[var(--accent)]{% endif %}">
+     	 {{each_status.name1}}
+     </a>
+     {% endfor %}
+  </menu>
+  <div class="grid grid-cols-2 md:grid-cols-4 w-full mt-5">
+          {% for book in books %}
+        <div class="p-6 border-b flex flex-col  rounded-xl">
+        	<img src={{book.image}} class="w-full max-w-[260px] md:max-w-[300px] aspect[2/3] justify-center rounded-sm" />
+        	<div class="md:w-full text-center">
+                <h4 class="font-medium  text-base">{{ book.title }}</h4>
+                <p class="text-sm">{{ book.author }}</p>
+            </div>
+        </div>
+    {% else %}
+        <p class="p-4 text-gray-500">
+            No books found for this reading status.
+        </p>
+    {% endfor %}
+
+  </div>
+{% endblock %}

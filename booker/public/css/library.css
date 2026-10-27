@@ -1,0 +1,335 @@
+/* Add to <head>:
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600&family=DM+Sans:wght@400;500;600&display=swap">
+*/
+
+:root {
+    --bg: #f6f1dc;
+    --surface: #fffdf4;
+    --ink: #1d2b24;
+    --muted: #6b705c;
+    --line: #e4dcb8;
+    --accent: #2f5d50;
+    --on-accent: #fffdf4;
+    --shadow: 0 8px 28px rgb(60 50 10 / 14%);
+
+    --nav-background: var(--surface);
+    --nav-border: var(--line);
+    --nav-text: var(--muted);
+    --nav-active: var(--accent);
+    --nav-add-background: var(--accent);
+    --nav-add-text: var(--on-accent);
+}
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg: #17201b;
+        --surface: #212c26;
+        --ink: #f1ecd6;
+        --muted: #a3a98f;
+        --line: #33403a;
+        --accent: #8fc4ae;
+        --on-accent: #14201a;
+        --shadow: 0 8px 28px rgb(0 0 0 / 50%);
+    }
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    min-height: 100%;
+}
+
+body {
+    margin: 0;
+    padding-bottom: calc(110px + env(safe-area-inset-bottom));
+    font-family: "DM Sans", system-ui, sans-serif;
+    color: var(--ink);
+    background-color: var(--bg);
+}
+
+.library-main {
+    max-width: 560px;
+    min-height: 100vh;
+    margin: 0 auto;
+    padding: 28px 20px 24px;
+}
+
+/* ---------- Header ---------- */
+
+.library-header-top {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.library-title {
+    margin: 0;
+    font-family: "Fraunces", Georgia, serif;
+    font-size: 2.6rem;
+    font-weight: 600;
+    line-height: 1;
+    letter-spacing: -0.02em;
+    text-align: left;
+}
+
+.library-subtitle {
+    margin: 8px 0 0;
+    font-size: 0.95rem;
+    color: var(--muted);
+}
+
+.library-search {
+    display: grid;
+    width: 44px;
+    height: 44px;
+    place-items: center;
+    color: var(--ink);
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.library-goal {
+    margin-top: 22px;
+    padding: 16px 18px;
+    color: var(--on-accent);
+    background: var(--accent);
+    border-radius: 18px;
+}
+
+.library-goal p {
+    margin: 0 0 10px;
+    font-size: 0.95rem;
+}
+
+.library-goal-bar {
+    height: 8px;
+    overflow: hidden;
+    background: rgb(255 253 244 / 25%);
+    border-radius: 99px;
+}
+
+.library-goal-bar > span {
+    display: block;
+    width: 40%; /* set from your data */
+    height: 100%;
+    background: var(--on-accent);
+    border-radius: 99px;
+}
+
+/* ---------- Tabs ---------- */
+
+.library-tabs {
+    display: flex;
+    gap: 4px;
+    margin-top: 20px;
+    padding: 4px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+}
+
+.library-tab {
+    flex: 1;
+    padding: 10px 4px;
+    font: 500 0.9rem "DM Sans", sans-serif;
+    color: var(--muted);
+    background: none;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.2s ease, color 0.2s ease;
+}
+
+.library-tab .count {
+    margin-left: 3px;
+    font-weight: 400;
+    opacity: 0.7;
+}
+
+.library-tab.active {
+    color: var(--on-accent);
+    background: var(--accent);
+}
+
+.library-tab:focus-visible,
+.library-search:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* ---------- Book list ---------- */
+
+.book-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 20px;
+}
+
+.book-card {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+}
+
+.book-cover {
+    flex: none;
+    width: 48px;
+    height: 68px;
+    object-fit: cover;
+    border-radius: 5px 8px 8px 5px;
+}
+
+.book-card h2 {
+    margin: 0;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.book-card p {
+    margin: 2px 0 0;
+    font-size: 0.85rem;
+    color: var(--muted);
+}
+
+.library-empty {
+    padding: 48px 16px;
+    text-align: center;
+    color: var(--muted);
+}
+
+.library-empty strong {
+    display: block;
+    margin-bottom: 6px;
+    font-size: 1.1rem;
+    color: var(--ink);
+}
+
+/* ---------- Bottom nav (floating on all sizes) ---------- */
+
+.library-bottom-nav {
+    position: fixed;
+    z-index: 1000;
+    bottom: calc(14px + env(safe-area-inset-bottom));
+    left: 50%;
+
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    align-items: center;
+
+    width: min(440px, calc(100% - 24px));
+    min-height: 68px;
+    padding: 8px;
+
+    background: var(--nav-background);
+    border: 1px solid var(--nav-border);
+    border-radius: 24px;
+    box-shadow: var(--shadow);
+    transform: translateX(-50%);
+}
+
+.library-nav-item {
+    display: flex;
+    min-width: 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+
+    padding: 6px 2px;
+
+    color: var(--nav-text);
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 500;
+
+    transition: color 0.2s ease;
+}
+
+.library-nav-item > i {
+    font-size: 21px;
+    line-height: 1;
+}
+
+.library-nav-item:hover,
+.library-nav-item.active {
+    color: var(--nav-active);
+}
+
+.library-nav-item.active {
+    font-weight: 700;
+}
+
+.library-nav-item.add-book .add-book-icon {
+    display: grid;
+    width: 52px;
+    height: 44px;
+    place-items: center;
+
+    color: var(--nav-add-text);
+    background: var(--nav-add-background);
+    border-radius: 16px;
+}
+
+.library-nav-item.add-book:hover {
+    color: var(--nav-text);
+}
+
+.library-nav-item.add-book .add-book-icon i {
+    font-size: 21px;
+}
+
+.library-nav-item:focus-visible {
+    outline: 2px solid var(--nav-active);
+    outline-offset: 3px;
+    border-radius: 12px;
+}
+
+@media (min-width: 768px) {
+    .library-bottom-nav {
+        width: min(480px, calc(100% - 40px));
+        bottom: 20px;
+    }
+
+    .library-main {
+        padding-top: 40px;
+    }
+}
+
+@media (max-width: 360px) {
+    .library-main {
+        padding: 20px 16px;
+    }
+
+    .library-title {
+        font-size: 2.2rem;
+    }
+
+    .library-tab {
+        font-size: 0.8rem;
+    }
+
+    .library-nav-item {
+        gap: 3px;
+        font-size: 10px;
+    }
+
+    .library-nav-item > i {
+        font-size: 19px;
+    }
+
+    .library-nav-item.add-book .add-book-icon {
+        width: 42px;
+        height: 36px;
+    }
+}
