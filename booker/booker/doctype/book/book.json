@@ -16,7 +16,8 @@
   "section_break_jszr",
   "total_no_of_pages",
   "column_break_ytew",
-  "pages_completed"
+  "pages_completed",
+  "percentage_completed"
  ],
  "fields": [
   {
@@ -73,6 +74,11 @@
    "fieldname": "pages_completed",
    "fieldtype": "Int",
    "label": "Pages Completed"
+  },
+  {
+   "fieldname": "percentage_completed",
+   "fieldtype": "Int",
+   "label": "Percentage Completed"
   }
  ],
  "grid_page_length": 50,
@@ -80,7 +86,7 @@
  "image_field": "image",
  "index_web_pages_for_search": 1,
  "links": [],
- "modified": "2026-10-27 16:24:25.839541",
+ "modified": "2026-10-28 14:12:50.451440",
  "modified_by": "Administrator",
  "module": "Booker",
  "name": "Book",

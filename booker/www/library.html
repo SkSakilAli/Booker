@@ -7,13 +7,19 @@
   <menu class="flex justify-between w-full items-center gap-1 p-1 m-0 overflow-x-auto whitespace-nowrap rounded-[14px] border border-[var(--line)] bg-[var(--surface)]">
      {% for each_status in reading_status %}
      <a  href="library?status={{each_status.name | urlencode}}"
-     	 class="flex-1 shrink-0 rounded-[10px] px-2 py-2.5 text-center text-sm font-medium transition-colors cursor-pointer {% if loop.first %}bg-[var(--accent)] text-[var(--on-accent)]{% else %}text-[var(--muted)] hover:text-[var(--accent)]{% endif %}">
+     	 class="flex-1 shrink-0 rounded-[10px] px-2 py-2.5 text-center text-sm font-medium transition-colors cursor-pointer
+     	 {% if each_status.name | string == selected_status | string %}
+          bg-[var(--accent)] text-[var(--on-accent)]
+         {% else %}
+         text-[var(--muted)] hover:text-[var(--accent)]
+         {% endif %}">
      	 {{each_status.name1}}
      </a>
      {% endfor %}
   </menu>
+  {% if selected_status | string != "1" %}
   <div class="grid grid-cols-2 md:grid-cols-4 w-full mt-5">
-          {% for book in books %}
+        {% for book in books %}
         <div class="p-6 border-b flex flex-col  rounded-xl">
         	<img src={{book.image}} class="w-full max-w-[260px] md:max-w-[300px] aspect[2/3] justify-center rounded-sm" />
         	<div class="md:w-full text-center">
@@ -21,11 +27,33 @@
                 <p class="text-sm">{{ book.author }}</p>
             </div>
         </div>
-    {% else %}
+       {% else %}
         <p class="p-4 text-gray-500">
             No books found for this reading status.
         </p>
-    {% endfor %}
-
-  </div>
+       {% endfor %}
+    </div>
+    {% else %}
+      <!-- Reading Book Blocks-->
+       <div class="grid grid-cols-1 md:grid-cols-2 w-full mt-5 ">
+        {% for book in books %}
+        <div class="p-6 m-6 border-b flex flex-row w-fill rounded-xl bg-[--on-accent]">
+        	<img src={{book.image}} class="w-full h-fit self-center max-w-[60px] md:max-w-[140px] aspect[2/3] justify-center rounded-sm" />
+        	<div class="p-4 pages_completedtext-center flex md:flex-col flex-col">
+                <h4 class="font-bold text-xl w-full">{{ book.title }}</h4>
+                <p class="text-sm">{{ book.author }}</p>
+                <div class="mt-auto">
+                	<spam class="font-bold text-lg">{{book.pages_completed}}</spam>
+                	<spam class="text-sm">of
+                	{{book.total_no_of_pages}} Pages</spam>
+                	<div class="h-1 w-full bg-gray-200">
+                		<div class="h-full bg-green-500" style="width:
+                			{{book.percentage_completed}}%"></div>
+                	</div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+       </div>
+    {% endif %}
 {% endblock %}
