@@ -1,6 +1,7 @@
 {
  "actions": [],
  "allow_copy": 1,
+ "allow_guest_to_view": 1,
  "autoname": "autoincrement",
  "creation": "2026-10-27 15:59:54.153907",
  "doctype": "DocType",
@@ -13,11 +14,14 @@
   "title",
   "author",
   "description",
+  "publisher",
   "section_break_jszr",
   "total_no_of_pages",
   "column_break_ytew",
   "pages_completed",
-  "percentage_completed"
+  "percentage_completed",
+  "route",
+  "is_published"
  ],
  "fields": [
   {
@@ -79,14 +83,31 @@
    "fieldname": "percentage_completed",
    "fieldtype": "Int",
    "label": "Percentage Completed"
+  },
+  {
+   "fieldname": "route",
+   "fieldtype": "Data",
+   "label": "route"
+  },
+  {
+   "default": "1",
+   "fieldname": "is_published",
+   "fieldtype": "Check",
+   "label": "Is Published"
+  },
+  {
+   "fieldname": "publisher",
+   "fieldtype": "Data",
+   "label": "Publisher"
   }
  ],
  "grid_page_length": 50,
- "hide_toolbar": 1,
+ "has_web_view": 1,
  "image_field": "image",
  "index_web_pages_for_search": 1,
+ "is_published_field": "is_published",
  "links": [],
- "modified": "2026-10-28 14:12:50.451440",
+ "modified": "2026-10-29 15:34:35.765145",
  "modified_by": "Administrator",
  "module": "Booker",
  "name": "Book",
@@ -106,6 +127,7 @@
    "write": 1
   }
  ],
+ "route": "book",
  "row_format": "Dynamic",
  "rows_threshold_for_grid_search": 20,
  "show_title_field_in_link": 1,
