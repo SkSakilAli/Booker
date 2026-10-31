@@ -1,7 +1,0 @@
-{% extends "templates/main_temp.html" %}
-{% block title %}Books{% endblock %}
-{% block content %}
-    <h1>Library</h1>
-    <hr class="my-4 border-t border-gray-300"
-
-{% endblock %}

@@ -21,7 +21,9 @@
   "pages_completed",
   "percentage_completed",
   "route",
-  "is_published"
+  "is_published",
+  "tags_section",
+  "tags"
  ],
  "fields": [
   {
@@ -58,7 +60,7 @@
   },
   {
    "fieldname": "description",
-   "fieldtype": "Data",
+   "fieldtype": "Long Text",
    "label": "Description"
   },
   {
@@ -99,6 +101,17 @@
    "fieldname": "publisher",
    "fieldtype": "Data",
    "label": "Publisher"
+  },
+  {
+   "fieldname": "tags_section",
+   "fieldtype": "Section Break",
+   "label": "Tags"
+  },
+  {
+   "fieldname": "tags",
+   "fieldtype": "Table",
+   "label": "Tags",
+   "options": "Book Tag"
   }
  ],
  "grid_page_length": 50,
@@ -107,7 +120,7 @@
  "index_web_pages_for_search": 1,
  "is_published_field": "is_published",
  "links": [],
- "modified": "2026-10-29 15:34:35.765145",
+ "modified": "2026-10-31 14:54:05.900269",
  "modified_by": "Administrator",
  "module": "Booker",
  "name": "Book",

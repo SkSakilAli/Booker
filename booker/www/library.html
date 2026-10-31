@@ -17,16 +17,16 @@
      </a>
      {% endfor %}
   </menu>
-  {% if selected_status | string != "1" %}
+  {% if selected_status | string != "5" %}
   <div class="grid grid-cols-2 md:grid-cols-4 w-full mt-5">
         {% for book in books %}
-        <div class="p-6 border-b flex flex-col  rounded-xl">
-        	<img src={{book.image}} class="w-full max-w-[260px] md:max-w-[300px] aspect[2/3] justify-center rounded-sm" />
+        <a class="p-6 border-b flex flex-col  rounded-xl" href={{book.route | urlencode}}>
+        	<img src={{book.image}} class="w-full max-w-[260px] md:max-w-[300px] aspect[2/3] justify-center rounded-sm"/>
         	<div class="md:w-full text-center">
                 <h4 class="font-medium  text-base">{{ book.title }}</h4>
                 <p class="text-sm">{{ book.author }}</p>
             </div>
-        </div>
+        </a>
        {% else %}
         <p class="p-4 text-gray-500">
             No books found for this reading status.
@@ -37,7 +37,8 @@
       <!-- Reading Book Blocks-->
        <div class="grid grid-cols-1 md:grid-cols-2 w-full mt-5 ">
         {% for book in books %}
-        <div class="p-6 m-6 border-b flex flex-row w-fill rounded-xl bg-[--on-accent]">
+        <a class="p-6 m-6 border-b flex flex-row w-fill rounded-xl bg-[--on-accent]"
+        	href={{book.route | urlencode}}>
         	<img src={{book.image}} class="w-full h-fit self-center max-w-[60px] md:max-w-[140px] aspect[2/3] justify-center rounded-sm" />
         	<div class="p-4 pages_completedtext-center flex md:flex-col flex-col">
                 <h4 class="font-bold text-xl w-full">{{ book.title }}</h4>
@@ -52,7 +53,7 @@
                 	</div>
                 </div>
             </div>
-        </div>
+        </a>
         {% endfor %}
        </div>
     {% endif %}

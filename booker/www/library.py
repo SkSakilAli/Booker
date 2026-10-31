@@ -15,7 +15,7 @@ def get_book_list(status: str):
         	"status":str(status)
         },
         fields=["name", "title", "image", "author", "description", "total_no_of_pages",
-        		"pages_completed", "percentage_completed"],
+        		"pages_completed", "percentage_completed", "route"],
         order_by="modified desc"
     )
 
